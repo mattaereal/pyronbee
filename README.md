@@ -9,3 +9,19 @@ evasion-of-web-application-firewalls
 The current version of pyronbee does not have test cases, but will be added
 soon. Also, momentarily supports basic detection to responses, something that
 will be added on the next release.
+
+### Test files on pyronbee
+The current format for requests in test files is in JSON.
+
+    {
+      "method": "GET",
+      "url": "/index.php",
+      "body": {},
+      "headers": {
+      	"User-Agent": "pyronbee",
+      	"Connection": "Close"
+      },
+      "description": "Just a sample test."
+    }
+
+    
