@@ -1,0 +1,11 @@
+{
+"method": "GET",
+"url": "/<script>alert('xss')</script>",
+"body": {}, 
+"headers": 	{
+	"User-Agent": "pyronbee",
+	"Connection": "Close"
+	},
+"description": "Just a sample test."
+
+}
