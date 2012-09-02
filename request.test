@@ -1,11 +1,15 @@
 {
+"default": "off",
 "method": "GET",
-"url": "/<script>alert('xss')</script>",
-"body": {}, 
+"url": "/",
+"http_ver": "HTTP/1.1",
+"body": {
+    "user": "matt",
+    "passwd": "sarasa"
+}, 
 "headers": 	{
 	"User-Agent": "pyronbee",
 	"Connection": "Close"
 	},
 "description": "Just a sample test."
-
 }

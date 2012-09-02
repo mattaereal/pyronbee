@@ -23,10 +23,9 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from httplib2 import HTTPConnectionWithTimeout as HTTPCustom
-from json import load as JSONLoad
-from urllib import urlencode
 import sys
+from CustomHTTPLib import CustomHTTPLib
+from json import load as JSONLoad
 
 class PyronBee:
 
@@ -39,6 +38,7 @@ class PyronBee:
 		self.port = port
 		self.test_files = files
 		self.timeout = timeout
+		self.formatFile = "default.cfg"
 
 		self.startTests()
 
@@ -48,29 +48,18 @@ class PyronBee:
 		Loops gathering data from input files and then uses them on a request.
 		"""
 		while (self.test_files):
-			http = HTTPCustom(self.host, self.port, self.timeout)
-			request = self.readRequestFromJSON()
-			self.makeRequest(http, request)
-			response = self.getResponse(http, request)
-			self.output(self.currentFilename, response)
+			mfs = CustomHTTPLib(self.host, self.port, self.formatFile, \
+			 self.timeout)
+			mfs.connect()
+			plain_data = self.getDictFromJSONFile()
+			formated_data = mfs.formatRequest(plain_data)
+			mfs.makeRequest(formated_data)
+			response = mfs.getResponse()
+			self.output(self.currentFilename, response, \
+			 plain_data['description'])
 
 
-	def getResponse(self, http, req):
-		"""
-		Returns an http response object.
-		
-		"""
-		return http.getresponse()
-
-	def makeRequest(self, http, req):
-		"""
-		Makes an http request using certain keys from req dictionary.
-		
-		"""
-		params = urlencode(req["body"]) # For post data.
-		http.request(req["method"], req["url"], params, req["headers"])
-
-	def readRequestFromJSON(self):
+	def getDictFromJSONFile(self):
 		"""
 		Reads the request data stored in the file with JSON syntax.
 		"""
@@ -81,16 +70,18 @@ class PyronBee:
 			currentFile.close()
 			return data
 		except:
-			print "No JSON object could be decoded - %s" % self.currentFilename
+			sys.stderr.write("[ERROR] No JSON object could be decoded - %s\n" \
+			 % self.currentFilename)
 			if self.test_files:
-				return self.readRequestFromJSON()
+				return self.getDictFromJSONFile()
 			sys.exit(2)
 
-	def output(self, filename, response):
+	def output(self, filename, response, description):
 		"""
 		Prints how the test went.
 		"""
-		print self.translateStatusCode(response), "["+filename+"]"
+		print self.translateStatusCode(response), \
+		 "["+filename+"] |", description
 
 	def translateStatusCode(self, response):
 		"""
@@ -109,7 +100,7 @@ if __name__ == "__main__":
     sys.stderr.write("# pyronbee, idea from ivanr's waf-research\n")
 
     if len(sys.argv) >= 4:
-    	pb = PyronBee(sys.argv[1], sys.argv[2], sys.argv[3:])
+    	pb = PyronBee(sys.argv[1], int(sys.argv[2]), sys.argv[3:])
 
     else:
         print "[!] Usage: %s host port test_files" % sys.argv[0]
