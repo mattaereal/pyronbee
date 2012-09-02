@@ -6,10 +6,6 @@ from urllib import urlencode
 from StringIO import StringIO
 from httplib import HTTPResponse
 
-FORMAT_1 = "%s %s %s\r\n"
-FORMAT_2 = "%s: %s\r\n"
-FORMAT_3 ="\n%s\r\n"
-
 class CustomHTTPLib:
 	"""
 	Custom HTTP lib using nothing but sockets.
