@@ -69,11 +69,11 @@ syntax. The request line contains an HTTP method, a Uniform Resource Identifier
 characters. Typically, the request line is followed by a series of HTTP headers.
 
 
-    {
-    "method": "%s %s %s\r\n",
-    "header": "%s: %s\r\n",
-    "body": "\n%s\r\n"
-    }
+      {
+      "method": "%s %s %s\r\n",
+      "header": "%s: %s\r\n",
+      "body": "\n%s\r\n"
+      }
 
 For example, using the following .test file:
       {
@@ -93,10 +93,10 @@ For example, using the following .test file:
 the request will look like this:
 
 
-  GET / HTTP/1.1\r\n
-  User-Agent: pyronbee\r\n
-  Connection: Close\r\n
-  \r\n
+      GET / HTTP/1.1\r\n
+      User-Agent: pyronbee\r\n
+      Connection: Close\r\n
+      \r\n
 
 
 ## Why JSON in test files?
@@ -108,15 +108,15 @@ than object serialization.
 
 ## Usage
 
-  [matt@mfsec pyronbee]$ ./pyronbee.py
-  [!] Usage: ./pyronbee.py host port test_files
-  [!] Examples:
-     ./pyronbee.py mfsec.com.ar 80 request.test
-     ./pyronbee.py mfsec.com.ar 443 *.test
+      [matt@mfsec pyronbee]$ ./pyronbee.py
+      [!] Usage: ./pyronbee.py host port test_files
+      [!] Examples:
+         ./pyronbee.py mfsec.com.ar 80 request.test
+         ./pyronbee.py mfsec.com.ar 443 *.test
 
-  [matt@mfsec pyronbee]$ ./pyronbee.py mfsec.com.ar 80 *.test
-  [!!] Missed [request.test] | Just a sample test.
-  [+] Blocked [request2.test] | Just another sample test.
+      [matt@mfsec pyronbee]$ ./pyronbee.py mfsec.com.ar 80 *.test
+      [!!] Missed [request.test] | Just a sample test.
+      [+] Blocked [request2.test] | Just another sample test.
 
 
 ## TODO
