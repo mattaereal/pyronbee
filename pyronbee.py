@@ -56,7 +56,7 @@ class PyronBee:
 			mfs.makeRequest(formated_data)
 			response = mfs.getResponse()
 			self.output(self.currentFilename, response, \
-			 plain_data['description'])
+				plain_data['description'], plain_data['status_codes'])
 
 
 	def getDictFromJSONFile(self):
@@ -76,23 +76,23 @@ class PyronBee:
 				return self.getDictFromJSONFile()
 			sys.exit(2)
 
-	def output(self, filename, response, description):
+	def output(self, filename, response, description, statusCodes):
 		"""
 		Prints how the test went.
 		"""
-		print self.translateStatusCode(response), \
+		print self.analizeStatusCode(response, statusCodes), \
 		 "["+filename+"] |", description
 
-	def translateStatusCode(self, response):
+	def analizeStatusCode(self, response, statusCodes):
 		"""
 		Returns a human readable representation of the result status of the 
 		current test.
 
 		"""
-		if response.status != 200:
-			return "[+] Blocked"
+		if response.status in statusCodes:
+			return "[!!] Missed"
 		else:
-			return "[!] Missed"
+			return "[+] Blocked"
 
 
 if __name__ == "__main__":

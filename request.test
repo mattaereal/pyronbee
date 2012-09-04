@@ -1,7 +1,6 @@
 {
-"default": "off",
-"method": "GET",
-"url": "/",
+"method": "POST",
+"url": "/index.php",
 "http_ver": "HTTP/1.1",
 "body": {
     "user": "matt",
@@ -11,5 +10,6 @@
 	"User-Agent": "pyronbee",
 	"Connection": "Close"
 	},
-"description": "Just a sample test."
+"description": "Just a sample test.",
+"status_codes": [302, 200]
 }

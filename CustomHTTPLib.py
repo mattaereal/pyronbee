@@ -94,6 +94,7 @@ class CustomHTTPLib:
 		request = self.format['method'] % (data['method'], data['url'], \
 		 data['http_ver'])
 		
+		request += self.format['header'] % ("Host", self.host)
 		for header, value in data["headers"].iteritems():
 			request += self.format['header'] % (header, value)
 

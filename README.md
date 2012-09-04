@@ -13,9 +13,8 @@ soon.
 The current format for requests in test files is in JSON.
 
       {
-        "default": "off",
-        "method": "GET",
-        "url": "/",
+        "method": "POST",
+        "url": "/form.php",
         "http_ver": "HTTP/1.1",
         "body": {
             "user": "matt",
@@ -25,7 +24,8 @@ The current format for requests in test files is in JSON.
           "User-Agent": "pyronbee",
           "Connection": "Close"
           },
-        "description": "Just a sample test."
+        "description": "Just a sample test.",
+        "status_codes": [302, 200]
       }
 
 
