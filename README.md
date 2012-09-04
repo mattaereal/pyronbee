@@ -1,16 +1,33 @@
 pyronbee
 ============
 
+pyronbee is a networking security tool to test Web Application Firewalls using
+customized requests. 
+
 This repository contains my own implementation of the IronBee WAF Research
 project data. For more information, please fetch the whitepaper from
 https://community.qualys.com/blogs/securitylabs/2012/07/25/protocol-level-
 evasion-of-web-application-firewalls
 
-The current version of pyronbee does not have test cases, but will be added
-soon.
+The current version of pyronbee does not have `test files`, but will be added
+soon. In the meanwhile you can make your own, since it's very easy to do it.
+
+## My personal usage of pyronbee
+
+Sometimes you find yourself doing a pentest and the security (WAF, IDS, IPS)
+starts to block certain request you do, for example the ones for an SQL
+Injection. Knowing that a WAF does not see the same as a web server, tweaking a
+little our request can make the security to ignore it, and the webserver may
+understand it as a sucessful request.
+
+Web servers tend to fix malformed requests, and there are modules to correct
+some urls to specific documents, paths, such as mod_spelling. So you can try
+to send 'broken' requests hoping that the WAF consider it harmless and the web
+server interpret it correctly.
 
 ### Test files on pyronbee
-The current format for requests in test files is in JSON.
+
+The current format for requests in test files is in `JSON`.
 
       {
         "method": "POST",
@@ -29,4 +46,81 @@ The current format for requests in test files is in JSON.
       }
 
 
-    
+      {
+        "method": "GET",
+        "url": "/UNION%20SELECT",
+        "http_ver": "HTTP/1.1",
+        "body": {
+        }, 
+        "headers":  {
+          "User-Agent": "pyronbee",
+          "Connection": "Close"
+          },
+        "description": "Just another sample test.",
+        "status_codes": [200]
+      }
+
+
+## Formatting requests 
+
+The way pyronbee formats the requests is in the file `default.cfg` with JSON
+syntax. The request line contains an HTTP method, a Uniform Resource Identifier
+(URI), and the HTTP version number, followed by carriage return and line feed
+characters. Typically, the request line is followed by a series of HTTP headers.
+
+
+    {
+    "method": "%s %s %s\r\n",
+    "header": "%s: %s\r\n",
+    "body": "\n%s\r\n"
+    }
+
+For example, using the following .test file:
+      {
+        "method": "GET",
+        "url": "/",
+        "http_ver": "HTTP/1.1",
+        "body": {
+        }, 
+        "headers":  {
+          "User-Agent": "pyronbee",
+          "Connection": "Close"
+          },
+        "description": "Example.",
+        "status_codes": [200]
+      }
+
+the request will look like this:
+
+
+  GET / HTTP/1.1\r\n
+  User-Agent: pyronbee\r\n
+  Connection: Close\r\n
+  \r\n
+
+
+## Why JSON in test files?
+
+The main purpose of using JSON in `default.cfg` and `*.test` files is to give
+users a chance to customize their requests as much as possible. JSON seemed
+right, since it's parseable in most of the languages and it's easier to read
+than object serialization.
+
+## Usage
+
+  [matt@mfsec pyronbee]$ ./pyronbee.py
+  [!] Usage: ./pyronbee.py host port test_files
+  [!] Examples:
+     ./pyronbee.py mfsec.com.ar 80 request.test
+     ./pyronbee.py mfsec.com.ar 443 *.test
+
+  [matt@mfsec pyronbee]$ ./pyronbee.py mfsec.com.ar 80 *.test
+  [!!] Missed [request.test] | Just a sample test.
+  [+] Blocked [request2.test] | Just another sample test.
+
+
+## TODO
+Add `*.test` files.
+Add the option to use different format (.cfg) files if needed.
+Add timeouts.
+Add the option to make a final report.
