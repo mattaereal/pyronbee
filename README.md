@@ -12,7 +12,7 @@ evasion-of-web-application-firewalls
 The current version of pyronbee does not have `test files`, but will be added
 soon. In the meanwhile you can make your own, since it's very easy to do it.
 
-## My personal usage of pyronbee
+### My personal usage of pyronbee
 
 Sometimes you find yourself doing a pentest and the security (WAF, IDS, IPS)
 starts to block certain request you do, for example the ones for an SQL
@@ -25,9 +25,11 @@ some urls to specific documents, paths, such as mod_spelling. So you can try
 to send 'broken' requests hoping that the WAF consider it harmless and the web
 server interpret it correctly.
 
-### Test files on pyronbee
+## Test files on pyronbee
 
 The current format for requests in test files is in `JSON`.
+
+request.test:
 
       {
         "method": "POST",
@@ -45,6 +47,7 @@ The current format for requests in test files is in `JSON`.
         "status_codes": [302, 200]
       }
 
+request2.test:
 
       {
         "method": "GET",
@@ -99,13 +102,6 @@ the request will look like this:
       \r\n
 
 
-## Why JSON in test files?
-
-The main purpose of using JSON in `default.cfg` and `*.test` files is to give
-users a chance to customize their requests as much as possible. JSON seemed
-right, since it's parseable in most of the languages and it's easier to read
-than object serialization.
-
 ## Usage
 
       [matt@mfsec pyronbee]$ ./pyronbee.py
@@ -118,8 +114,14 @@ than object serialization.
       [!!] Missed [request.test] | Just a sample test.
       [+] Blocked [request2.test] | Just another sample test.
 
+### Why JSON in test files?
 
-## TODO
+The main purpose of using JSON in `default.cfg` and `*.test` files is to give
+users a chance to customize their requests as much as possible. JSON seemed
+right, since it's parseable in most of the languages and it's easier to read
+than object serialization.
+
+### TODO
 Add `*.test` files.
 Add the option to use different format (.cfg) files if needed.
 Add timeouts.
