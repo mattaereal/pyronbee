@@ -2,10 +2,11 @@
 "method": "POST",
 "url": "/index.php",
 "http_ver": "HTTP/1.1",
-"body": {
-    "user": "matt",
-    "passwd": "sarasa"
-}, 
+"urlencoded": {
+	"user": "matt",
+	"password": "secret"
+},
+"multipart" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImFsYnVtX3RpdGxlIlxyXG4KXHJcbgpPcHRpb25hbCBBbGJ1bSBUaXRsZVxyXG4KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImxheW91dCJcclxuClxyXG4KYlxyXG4KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InNpZCJcclxuClxyXG4KamZmM2I3OWYybW5yMnFzNDhwYWt2aWlqYzZcclxuCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tNTYzNDM2MjkyMTMxNjE2NzU2Mzc0MjgzOTQ1NlxyXG4KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJmaWxlIjsgZmlsZW5hbWU9ImltYWdlLmpwZWciXHJcbgpDb250ZW50LVR5cGU6IGltYWdlL2pwZWdcclxuClxyXG4KaW1hZ2VkYXRh",
 "headers": 	{
 	"User-Agent": "pyronbee",
 	"Connection": "Close"

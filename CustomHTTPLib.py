@@ -5,6 +5,7 @@ from json import load as JSONLoad
 from urllib import urlencode
 from StringIO import StringIO
 from httplib import HTTPResponse
+from base64 import decodestring as decode
 
 class CustomHTTPLib:
 	"""
@@ -98,7 +99,16 @@ class CustomHTTPLib:
 		for header, value in data["headers"].iteritems():
 			request += self.format['header'] % (header, value)
 
-		request += self.format['body'] % urlencode(data['body'])
+
+		"""
+		When a POST method is used, here you control the data. Actually, since \
+		this tool intends to be liberal, you may use both when testing wafs, \
+		so feel free to take out the next if else sentence if you want to.
+		"""
+		if data['urlencoded']:
+			request += self.format['data'] % urlencode(data['urlencoded'])
+		else:
+			request += self.format['data'] % decode(data["multipart"])
 
 		return request
 
