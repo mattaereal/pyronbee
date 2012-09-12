@@ -24,6 +24,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sys
+sys.path.append("core")
 from CustomHTTPLib import CustomHTTPLib
 from json import load as JSONLoad
 
@@ -38,7 +39,7 @@ class PyronBee:
 		self.port = port
 		self.test_files = files
 		self.timeout = timeout
-		self.formatFile = "default.cfg"
+		self.formatFile = "config/default.cfg"
 
 		self.startTests()
 

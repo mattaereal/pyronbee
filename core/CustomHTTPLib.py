@@ -1,4 +1,27 @@
 #!/usr/bin/env python
+# -*- coding: latin-1 -*-
+
+# Copyright (c) <2012> Matías Ariel Ré Medina <mre@infobytesec.com> 
+
+# Custom HTTP lib using sockets module part from pyronbee as a module.
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+# the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 
 import socket, sys
 from json import load as JSONLoad
@@ -105,9 +128,10 @@ class CustomHTTPLib:
 		this tool intends to be liberal, you may use both when testing wafs, \
 		so feel free to take out the next if else sentence if you want to.
 		"""
+		
 		if data['urlencoded']:
 			request += self.format['data'] % urlencode(data['urlencoded'])
-		else:
+		elif data['multipart']:
 			request += self.format['data'] % decode(data["multipart"])
 
 		return request

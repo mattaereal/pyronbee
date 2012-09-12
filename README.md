@@ -33,12 +33,13 @@ request.test:
 
       {
         "method": "POST",
-        "url": "/form.php",
+        "url": "/ form.php",
         "http_ver": "HTTP/1.1",
-        "body": {
+        "urlencoded": {
             "user": "matt",
             "passwd": "sarasa"
-        }, 
+        },
+        "multipart" : null,
         "headers":  {
           "User-Agent": "pyronbee",
           "Connection": "Close"
@@ -54,7 +55,8 @@ request2.test:
         "url": "/UNION%20SELECT",
         "http_ver": "HTTP/1.1",
         "body": {
-        }, 
+        },
+        "multipart" : null,
         "headers":  {
           "User-Agent": "pyronbee",
           "Connection": "Close"
@@ -63,6 +65,25 @@ request2.test:
         "status_codes": [200]
       }
 
+If you wish to send multipart requests, you have to encode first the data on
+base64, since it's very tedious to manual escape special characters, slashes,
+brackets and commas.
+
+request3.test
+
+      {
+        "method": "POST",
+        "url": "/index.php",
+        "http_ver": "HTTP/1.1",
+        "urlencoded": null,
+        "multipart" : "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImFsYnVtX3RpdGxlIlxyXG4KXHJcbgpPcHRpb25hbCBBbGJ1bSBUaXRsZVxyXG4KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImxheW91dCJcclxuClxyXG4KYlxyXG4KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS01NjM0MzYyOTIxMzE2MTY3NTYzNzQyODM5NDU2XHJcbgpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InNpZCJcclxuClxyXG4KamZmM2I3OWYybW5yMnFzNDhwYWt2aWlqYzZcclxuCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tNTYzNDM2MjkyMTMxNjE2NzU2Mzc0MjgzOTQ1NlxyXG4KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJmaWxlIjsgZmlsZW5hbWU9ImltYWdlLmpwZWciXHJcbgpDb250ZW50LVR5cGU6IGltYWdlL2pwZWdcclxuClxyXG4KaW1hZ2VkYXRh",
+        "headers":  {
+          "User-Agent": "pyronbee",
+          "Connection": "Close"
+          },
+        "description": "Multipart test.",
+        "status_codes": [200]
+      }
 
 ## Formatting requests 
 
@@ -85,7 +106,8 @@ For example, using the following .test file:
         "url": "/",
         "http_ver": "HTTP/1.1",
         "body": {
-        }, 
+        },
+        "multipart" : null, 
         "headers":  {
           "User-Agent": "pyronbee",
           "Connection": "Close"
@@ -124,6 +146,6 @@ than object serialization.
 
 ### TODO
 Add `*.test` files.
-Add the option to use different format (.cfg) files if needed.
+Add the option to use a more than one custom file if needed.
 Add timeouts.
 Add the option to make a final report.
