@@ -145,7 +145,7 @@ right, since it's parseable in most of the languages and it's easier to read
 than object serialization.
 
 ### TODO
-Add `*.test` files.
-Add the option to use a more than one custom file if needed.
-Add timeouts.
-Add the option to make a final report.
+- Add `*.test` files.
+- Add the option to use a more than one custom file if needed.
+- Add timeouts.
+- Add the option to make a final report.
