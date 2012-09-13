@@ -31,7 +31,7 @@ from time import sleep
 
 class PyronBee:
 
-	def __init__(self, host, port, files, timeout=10, sleeptime=1):
+	def __init__(self, host, port, files, timeout=10, sleeptime=0):
 		"""
 		Just the initialization.
 		

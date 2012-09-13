@@ -1,1 +1,1 @@
-{"headers": {"Connection": "Close", "User-Agent": "pyronbee"}, "urlencoded": null, "http_ver": "HTTP/1.1", "url": "/this['ale'%2b'\\x72\\x74']()\n", "status_codes": [200], "description": "No description", "method": "GET", "multipart": null}
+{"headers": {"Connection": "Close", "User-Agent": "pyronbee"}, "urlencoded": null, "http_ver": "HTTP/1.1", "url": "/this['ale'%2b'\\x72\\x74']()", "status_codes": [200], "description": "No description", "method": "GET", "multipart": null}
