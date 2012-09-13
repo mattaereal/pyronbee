@@ -31,7 +31,7 @@ from time import sleep
 
 class PyronBee:
 
-	def __init__(self, host, port, files, timeout=10):
+	def __init__(self, host, port, files, timeout=10, sleeptime=1):
 		"""
 		Just the initialization.
 		
@@ -41,6 +41,7 @@ class PyronBee:
 		self.test_files = files
 		self.timeout = timeout
 		self.formatFile = "config/default.cfg"
+		self.sleeptime = sleeptime
 
 		self.startTests()
 
@@ -59,8 +60,7 @@ class PyronBee:
 			response = mfs.getResponse()
 			self.output(self.currentFilename, response, \
 				plain_data['description'], plain_data['status_codes'])
-			mfs.close()
-			sleep(1)
+			sleep(self.sleeptime)
 
 
 	def getDictFromJSONFile(self):

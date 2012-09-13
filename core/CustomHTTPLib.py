@@ -71,9 +71,6 @@ class CustomHTTPLib:
 
 		return self.sock
 
-	def close(self):
-			self.sock.close()
-
 	def makeRequest(self, data):
 		"""
 		Sends data through the opened socket.
