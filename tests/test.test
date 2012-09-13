@@ -1,0 +1,13 @@
+{
+"method": "GET",
+"url": "/<script",
+"http_ver": "HTTP/1.1",
+"urlencoded": null,
+"multipart" : null,
+"headers": 	{
+	"User-Agent": "pyronbee",
+	"Connection": "Close"
+	},
+"description": "Just a sample test.",
+"status_codes": [200]
+}
