@@ -27,6 +27,7 @@ import sys
 sys.path.append("core")
 from CustomHTTPLib import CustomHTTPLib
 from json import load as JSONLoad
+from time import sleep
 
 class PyronBee:
 
@@ -58,6 +59,8 @@ class PyronBee:
 			response = mfs.getResponse()
 			self.output(self.currentFilename, response, \
 				plain_data['description'], plain_data['status_codes'])
+			mfs.close()
+			sleep(1)
 
 
 	def getDictFromJSONFile(self):
@@ -91,9 +94,9 @@ class PyronBee:
 
 		"""
 		if response.status in statusCodes:
-			return "[!!] Missed"
+			return "[*] Missed with " + str(response.status)
 		else:
-			return "[+] Blocked"
+			return "[+] Blocked with " + str(response.status)
 
 
 if __name__ == "__main__":

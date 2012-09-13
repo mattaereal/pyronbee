@@ -71,17 +71,19 @@ class CustomHTTPLib:
 
 		return self.sock
 
+	def close(self):
+			self.sock.close()
+
 	def makeRequest(self, data):
 		"""
 		Sends data through the opened socket.
 		"""
 		self.sock.send(data)
-
-		data = self.sock.recv(1024)
+		data = self.sock.recv(1024) ##problema
 		self.plain_response = ""
 		while len(data):
-		  self.plain_response = self.plain_response + data
-		  data = self.sock.recv(1024)
+			self.plain_response = self.plain_response + data
+			data = self.sock.recv(1024)
 		self.sock.close()
 
 	def getResponse(self):
@@ -133,6 +135,7 @@ class CustomHTTPLib:
 			request += self.format['data'] % urlencode(data['urlencoded'])
 		elif data['multipart']:
 			request += self.format['data'] % decode(data["multipart"])
+		request += self.format['ending']
 
 		return request
 
