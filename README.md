@@ -29,7 +29,7 @@ server interpret it correctly.
 
 The current format for requests in test files is in **JSON**.
 
-request.test:
+**request.test:**
 
       {
         "method": "POST",
@@ -48,7 +48,7 @@ request.test:
         "status_codes": [302, 200]
       }
 
-request2.test:
+**request2.test:**
 
       {
         "method": "GET",
@@ -69,7 +69,7 @@ If you wish to send multipart requests, you have to encode first the data on
 base64, since it's very tedious to manual escape special characters, slashes,
 brackets and commas.
 
-request3.test
+**request3.test**
 
       {
         "method": "POST",
@@ -87,10 +87,11 @@ request3.test
 
 ## Formatting requests 
 
-The way pyronbee formats the requests is in the file **default.cfg** with JSON
-syntax. The request line contains an HTTP method, a Uniform Resource Identifier
-(URI), and the HTTP version number, followed by carriage return and line feed
-characters. Typically, the request line is followed by a series of HTTP headers.
+The way pyronbee formats the requests is in the file **default.cfg** with
+**JSON** syntax. The request line contains an HTTP method, a Uniform Resource
+Identifier (URI), and the HTTP version number, followed by carriage return and
+line feed characters. Typically, the request line is followed by a series of
+HTTP headers.
 
 
       {
@@ -99,7 +100,7 @@ characters. Typically, the request line is followed by a series of HTTP headers.
       "body": "\n%s\r\n"
       }
 
-For example, using the following .test file:
+For example, using the following **.test** file:
 
       {
         "method": "GET",
@@ -152,7 +153,7 @@ creation of **.test** files using a list of requests.
         ./gen_requests.py /index.php?search= requests isr_example_
 
 **`./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
-playground_tests_` will** generate one **.test.** file for each line in
+playground_tests_`** will generate one **.test** file for each line in
 **sample.requests** file.
 
 Content of **sample.requests** file:
