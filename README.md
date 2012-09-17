@@ -171,6 +171,7 @@ Content of **sample.requests** file:
       ...
 
 Sample of one of the generated files from above:
+
       {"headers": {"Connection": "Close", "User-Agent": "pyronbee"}, "urlencoded": null, "http_ver": "HTTP/1.1", "url": "/playground.php?step=1&href=javascript:window[\"alert\"](\"ISR\")", "status_codes": [200], "description": "No description", "method": "GET", "multipart": null}
 
 
