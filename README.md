@@ -9,7 +9,7 @@ project data. For more information, please fetch the whitepaper from
 https://community.qualys.com/blogs/securitylabs/2012/07/25/protocol-level-
 evasion-of-web-application-firewalls
 
-The current version of pyronbee does not have `test files`, but will be added
+The current version of pyronbee does not have **test files**, but will be added
 soon. In the meanwhile you can make your own, since it's very easy to do it.
 
 ### My personal usage of pyronbee
@@ -27,7 +27,7 @@ server interpret it correctly.
 
 ## Test files on pyronbee
 
-The current format for requests in test files is in `JSON`.
+The current format for requests in test files is in **JSON**.
 
 request.test:
 
@@ -87,7 +87,7 @@ request3.test
 
 ## Formatting requests 
 
-The way pyronbee formats the requests is in the file `default.cfg` with JSON
+The way pyronbee formats the requests is in the file **default.cfg** with JSON
 syntax. The request line contains an HTTP method, a Uniform Resource Identifier
 (URI), and the HTTP version number, followed by carriage return and line feed
 characters. Typically, the request line is followed by a series of HTTP headers.
@@ -141,7 +141,7 @@ the request will look like this:
 ## Extra tools
 
 Located in the extra folder I will be adding little scripts to automate the
-creation of `.test` files using a list of requests.
+creation of **.test** files using a list of requests.
 
 
 ### Usage of ./gen_requests.py
@@ -151,11 +151,11 @@ creation of `.test` files using a list of requests.
       Example:
         ./gen_requests.py /index.php?search= requests isr_example_
 
-*./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
-playground_tests_ will* generate one `.test.` file for each line in `sample.requests` 
-file.
+**./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
+playground_tests_ will** generate one **.test.** file for each line in
+**sample.requests** file.
 
-Content of `sample.requests` file:
+Content of **sample.requests** file:
 
       window["alert"]("ISR")
       window["ale"%2b(!![]%2b[])[-~[]]%2b(!![]%2b[])[%2b[]]]()
@@ -176,7 +176,7 @@ Sample of one of the generated files from above:
 
 ### Why JSON in test files?
 
-The main purpose of using JSON in `default.cfg` and `*.test` files is to give
+The main purpose of using JSON in **default.cfg** and ***.test** files is to give
 users a chance to customize their requests as much as possible. JSON seemed
 right, since it's parseable in most of the languages and it's easier to read
 than object serialization.
