@@ -125,7 +125,7 @@ the request will look like this:
       \r\n
 
 
-## Usage
+### Usage
 
       [matt@mfsec pyronbee]$ ./pyronbee.py
       [!] Usage: ./pyronbee.py host port test_files
@@ -136,6 +136,43 @@ the request will look like this:
       [matt@mfsec pyronbee]$ ./pyronbee.py mfsec.com.ar 80 *.test
       [!!] Missed [request.test] | Just a sample test.
       [+] Blocked [request2.test] | Just another sample test.
+
+
+## Extra tools
+
+Located in the extra folder I will be adding little scripts to automate the
+creation of `.test` files using a list of requests.
+
+
+### Usage of ./gen_requests.py
+
+      [matt@mfsec extra]$ ./gen_requests.py 
+      Usage: ./gen_requests.py URL REQUESTS_FILE PREFIX
+      Example:
+        ./gen_requests.py /index.php?search= requests isr_example_
+
+`./gen_requests.py "/playground.php?step=1&href=javascript:" requests
+playground_tests_` will generate one `.test. file for each line in `requests` 
+file.
+
+Content of `requests` file:
+
+      window["alert"]("ISR")
+      window["ale"%2b(!![]%2b[])[-~[]]%2b(!![]%2b[])[%2b[]]]()
+      window["ale"%2b"\x72\x74"]()
+      window["\x61\x6c\x65\x72\x74"]()
+      window['ale'%2b(!![]%2b[])[-~[]]%2b(!![]%2b[])[%2b[]]]()
+      window['ale'%2b'\x72\x74']()
+      window['\x61\x6c\x65\x72\x74']()
+      window[(+{}+[])[-~[]]+(![]+[])[-~-~[]]+([][+[]]+[])[-~-~-~[]]+(!![]+[])[-~[]]+(!![]+[])[+[]]]((-~[]+[]))
+      window[(+{}+[])[+!![]]+(![]+[])[!+[]+!![]]+([][+[]]+[])[!+[]+!![]+!![]]+(!![]+[])[+!![]]+(!![]+[])[+[]]]
+      this["alert"]("ISR")
+      ...
+
+Content of `playground_tests_*.test` files:
+  {"headers": {"Connection": "Close", "User-Agent": "pyronbee"}, "urlencoded": null, "http_ver": "HTTP/1.1", "url": "/playground.php?step=1&href=javascript:window[\"alert\"](\"ISR\")", "status_codes": [200], "description": "No description", "method": "GET", "multipart": null}
+
+
 
 ### Why JSON in test files?
 
