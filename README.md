@@ -125,7 +125,7 @@ the request will look like this:
       \r\n
 
 
-### Usage
+### Usage of pyronbee
 
       [matt@mfsec pyronbee]$ ./pyronbee.py
       [!] Usage: ./pyronbee.py host port test_files
@@ -134,8 +134,8 @@ the request will look like this:
          ./pyronbee.py mfsec.com.ar 443 *.test
 
       [matt@mfsec pyronbee]$ ./pyronbee.py mfsec.com.ar 80 *.test
-      [!!] Missed [request.test] | Just a sample test.
-      [+] Blocked [request2.test] | Just another sample test.
+      [*] Missed with a 200 [request.test] | Just a sample test.
+      [+] Blocked with a 403 [request2.test] | Just another sample test.
 
 
 ## Extra tools
@@ -151,11 +151,11 @@ creation of `.test` files using a list of requests.
       Example:
         ./gen_requests.py /index.php?search= requests isr_example_
 
-`./gen_requests.py "/playground.php?step=1&href=javascript:" requests
-playground_tests_` will generate one `.test. file for each line in `requests` 
+*./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
+playground_tests_ will* generate one `.test.` file for each line in `sample.requests` 
 file.
 
-Content of `requests` file:
+Content of `sample.requests` file:
 
       window["alert"]("ISR")
       window["ale"%2b(!![]%2b[])[-~[]]%2b(!![]%2b[])[%2b[]]]()
@@ -169,7 +169,7 @@ Content of `requests` file:
       this["alert"]("ISR")
       ...
 
-Content of `playground_tests_*.test` files:
+Sample of one of the generated files from above:
   {"headers": {"Connection": "Close", "User-Agent": "pyronbee"}, "urlencoded": null, "http_ver": "HTTP/1.1", "url": "/playground.php?step=1&href=javascript:window[\"alert\"](\"ISR\")", "status_codes": [200], "description": "No description", "method": "GET", "multipart": null}
 
 
