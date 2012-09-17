@@ -178,7 +178,7 @@ Sample of one of the generated files from above:
 
 ### Why JSON in test files?
 
-The main purpose of using JSON in **default.cfg** and ***.test** files is to give
+The main purpose of using JSON in **default.cfg** and **.test** files is to give
 users a chance to customize their requests as much as possible. JSON seemed
 right, since it's parseable in most of the languages and it's easier to read
 than object serialization.
