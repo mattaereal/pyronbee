@@ -151,8 +151,8 @@ creation of **.test** files using a list of requests.
       Example:
         ./gen_requests.py /index.php?search= requests isr_example_
 
-**./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
-playground_tests_ will** generate one **.test.** file for each line in
+**`./gen_requests.py "/playground.php?step=1&href=javascript:" sample.requests
+playground_tests_` will** generate one **.test.** file for each line in
 **sample.requests** file.
 
 Content of **sample.requests** file:
